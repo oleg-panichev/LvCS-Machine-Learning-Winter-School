@@ -1,7 +1,6 @@
 function maximg=nonmaxsup2d(response,thresh)
   maximg = response;
-  H = size(response, 1);
-  W = size(response, 2);
+  [H, W] = size(response);
   for i=1:H
     i_start = i-1;
     i_r = 2;
@@ -10,8 +9,8 @@ function maximg=nonmaxsup2d(response,thresh)
       i_r = 1;
     end
     i_end = i+1;
-    if i_end > W
-      i_end = W;
+    if i_end > H
+      i_end = H;
     end
       
     for j=1:W
@@ -40,27 +39,3 @@ function maximg=nonmaxsup2d(response,thresh)
     end
   end
 end
-
-% function maximg = nonmaxsup2d(response, thresh)
-% maximg = zeros(size(response));
-% [h, w] = size(response);
-% for i = 2:h-1
-%     for j = 2:w-1
-%         p = response(i-1:i+1,j-1:j+1); p = p(:); p(5) = 0;
-%         if ((response(i,j) >= thresh) & (response(i,j) > p))
-%             maximg(i,j) = 1;
-%         end
-%     end
-% end
-
-% function maximg = nonmaxsup2d(response, thresh)
-% maximg = zeros(size(response));
-% [h, w] = size(response);
-% for i = 2:h-1
-%     for j = 2:w-1
-%         p = response(i-1:i+1,j-1:j+1); p = p(:); p(5) = 0;
-%         if ((response(i,j) >= thresh) & (response(i,j) > p))
-%             maximg(i,j) = 1;
-%         end
-%     end
-% end

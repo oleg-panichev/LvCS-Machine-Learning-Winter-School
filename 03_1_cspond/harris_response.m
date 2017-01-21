@@ -3,10 +3,7 @@ function response=harris_response(img,sigma_d,sigma_i,alpha)
   if (nargin < 3) sigma_i = 1; end;
   if (nargin < 4) alpha = 0.04; end;
 
-  x = x3sigma(sigma_i);
-  G = gauss(x, sigma_i);
-
-  [dx,dy]=gaussderiv(img, sigma_d);
+  [dx,dy] = gaussderiv(img, sigma_d);
   C11 = gaussfilter(dx.^2, sigma_i);
   C12 = gaussfilter(dx.*dy, sigma_i);
   C21 = C12;
@@ -15,5 +12,5 @@ function response=harris_response(img,sigma_d,sigma_i,alpha)
   detC = C11.*C22 - C12.*C21;
   traceC = C11 + C22;
   
-  response=detC - alpha*traceC.*traceC;
+  response = detC - alpha*traceC.*traceC;
 end
